@@ -49,10 +49,10 @@ app.use((err, req, res, next) => {
 
 
 
-const port = process.env.PORT
-if (port == null || port == "") {
-  port = 8000;
-}
+const port = process.env.PORT || 8000
+// if (port == null || port == "") {
+//   port = 8000;
+// }
 app.listen(port, ()=> {
     connect()
     console.log(`Listening to port number ${port}`)
