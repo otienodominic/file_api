@@ -3,6 +3,7 @@ import {getUsers, editUser, createUser, deleteUser, getUser} from '../controller
 import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
 
 
+
 const router = Router()
 
 router.get('/', verifyAdmin,getUsers)
@@ -13,6 +14,7 @@ router.put('/edit/:id', verifyUser, editUser)
 
 router.delete('/delete/:id', verifyUser, deleteUser)
 router.get("/:id", verifyUser, getUser)
+
 
 // router.get('/authenticate', verifyToken, (req, res, next) => {
 //     res.json({message: "Hello you are Authenticated!"})

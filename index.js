@@ -8,7 +8,7 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import cors from 'cors'
 
-import freeApi from "./routes/freeApi.js"
+
 
 const app  = express()
 dotenv.config()
@@ -33,7 +33,7 @@ app.use(cors())
 app.use('/api/auth',authRoute)
 app.use('/api/files',filesRoute)
 app.use('/api/users', userRoute)
-app.use('/api/free', freeApi)
+
 
 
 

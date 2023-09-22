@@ -63,6 +63,18 @@ export const search  = async (req, res, next) => {
     }
 }
 
+export const trial = async (req, res, next) => {
+    try {
+        const greetings = {
+            message: "Hello",
+            time: new Date()
+        }
+        res.status(200).json(greetings)
+    } catch (error) {
+        next(error)
+    }
+}
+
 // export const search  = async (req, res, next) => {
 //     try {
 //         const {message} = req.body
