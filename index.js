@@ -5,6 +5,7 @@ import authRoute from "./routes/auth.js"
 import filesRoute from "./routes/files.js"
 import userRoute from "./routes/users.js"
 import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
 import cors from 'cors'
 
 import freeApi from "./routes/freeApi.js"
@@ -24,6 +25,8 @@ const connect = async () => {
 }
 
 // Middleware here!
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors())
