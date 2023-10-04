@@ -65,7 +65,7 @@ export const search  = async (req, res, next) => {
             patientName: { $regex: message, $options: 'i' }  // Case-insensitive name search          
         
         };      
-        const foundFiles = await File.find(query_a)  
+        const foundFiles = await File.find(query_b)  
         if(!foundFiles) res.status(400).send({error: "No files Found!"})     
         res.status(200).json(foundFiles)
     } catch (error) {
