@@ -53,9 +53,19 @@ export const getAllFiles = async (req, res, next) => {
 export const search  = async (req, res, next) => {
     try {
         const {message} = req.body
-        const foundFiles = await File.find({
-            patientName: { $regex: message, $options: 'i' }
-        })  
+
+        // Define the query
+     const query_a = {
+            $or: [
+              { name: { $regex: searchText, $options: 'i' } }, // Case-insensitive name search
+              { id: { $regex: searchText, $options: 'i' } },   // Case-insensitive id search
+            ],
+          };
+       const query_b = {        
+            patientName: { $regex: message, $options: 'i' }  // Case-insensitive name search          
+        
+        };      
+        const foundFiles = await File.find(query_a)  
         if(!foundFiles) res.status(400).send({error: "No files Found!"})     
         res.status(200).json(foundFiles)
     } catch (error) {
