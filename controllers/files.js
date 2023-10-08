@@ -53,20 +53,26 @@ export const getAllFiles = async (req, res, next) => {
 export const search  = async (req, res, next) => {
     try {
         const {message} = req.body
+        const {number} =req.body
+
+        let new_num = Number(number)
 
         // Define the query
      const query_a = {
             $or: [
-              { patientName: { $regex: message, $options: 'i' } }, // Case-insensitive name search
-              { patientNumber: { $regex: message, $options: 'i' } },   // Case-insensitive id search
+              { "patientName": { $regex: message, $options: 'i' } }, // Case-insensitive name search
+              { "gender": { $regex: message, $options: 'i' } },   // Case-insensitive id search
             ],
           };
-       const query_b = {        
-            patientName: { $regex: message, $options: 'i' }  // Case-insensitive name search          
-        
-        };      
-        const foundFiles = await File.find({patientName: { $regex: message, $options: 'i' }})  
-        if(!foundFiles) res.status(400).send({error: "No files Found!"})     
+         
+          const query_b = {
+            "patientName": { $regex: message, $options: 'i'  }
+        }
+        const query_c = {patientNumber: new_num}
+        // 1719600
+       
+        const foundFiles = await File.find(query_c)  
+        if(!foundFiles || foundFiles.length==0) res.status(400).json({error: "No files Found!"})     
         res.status(200).json(foundFiles)
     } catch (error) {
         next(error)

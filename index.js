@@ -12,7 +12,11 @@ import cors from 'cors'
 
 const app  = express()
 dotenv.config()
-
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
 
 // Database Connection
 const connect = async () => {
